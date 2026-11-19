@@ -1,6 +1,6 @@
 # FreightShield SOC
 
-**FreightShield SOC** is a modular Security Operations Center platform that connects Wazuh Manager and Wazuh Indexer through a FastAPI middleware layer, with a lightweight JavaScript frontend.
+**FreightShield SOC** is a modular Security Operations Center platform designed to connect Wazuh Manager and Wazuh Indexer through a FastAPI middleware layer, with a lightweight JavaScript frontend.
 
 ## Current implementation
 
@@ -12,20 +12,26 @@
 - Safe upstream error handling and configurable TLS verification
 - Vanilla JavaScript frontend for SOC dashboards, alerts, agents, incidents, AI assistant and user-role views
 
-> Authentication token issuance (Google OAuth login), persistent incident management, AI orchestration, PostgreSQL persistence and automated response are planned follow-on work; they should not be considered complete in this snapshot.
+> Google OAuth token issuance, persistent incident management, AI orchestration, PostgreSQL persistence and automated response are planned follow-on work; they are not represented as completed features in this project snapshot.
 
-## Project bundle
+## Architecture
 
-The initial source snapshot is provided in [freightshield-middleware-phase2b.zip](./freightshield-middleware-phase2b.zip). It contains:
-
-- `freightshield-backend/` — FastAPI application, Wazuh services, route modules and tests
-- `freightshield-frontend/` — static HTML, CSS and JavaScript frontend
-
-Extract the ZIP to work with the project files.
+```text
+Browser (Vanilla JavaScript)
+          |
+          | /api/*
+          v
+FastAPI Middleware
+     |          |
+     v          v
+Wazuh       Wazuh
+Manager     Indexer
+(55000)     (9200)
+```
 
 ## Backend setup
 
-From the extracted `freightshield-backend` directory:
+From the `freightshield-backend` directory:
 
 ```bash
 python -m venv .venv
@@ -57,11 +63,11 @@ API documentation: `http://localhost:8000/docs`
 
 ## Frontend setup
 
-From the extracted `freightshield-frontend` directory:
+From the `freightshield-frontend` directory:
 
 1. Copy `js/config.example.js` to `js/config.js`.
 2. Set the Google OAuth client ID and backend API base URL as appropriate.
-3. Start a local static server, for example:
+3. Start a local static server:
 
 ```bash
 python -m http.server 5173
@@ -77,7 +83,7 @@ Use trusted TLS certificates in production. Disabling certificate verification i
 
 ## Verification snapshot
 
-The development test report supplied for this snapshot records **30 backend tests passed, 0 failed, 0 skipped**, with Python compilation checks passing. Re-run the commands above in your own environment to independently reproduce the result.
+The latest development test report supplied for this snapshot records **30 backend tests passed, 0 failed, 0 skipped**, with Python compilation checks passing. Re-run the commands above in your own environment to independently reproduce the result.
 
 ## Security notes
 
