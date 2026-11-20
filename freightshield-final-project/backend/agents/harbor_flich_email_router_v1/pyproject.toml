@@ -1,0 +1,24 @@
+[project]
+name = "harbor_flich_email_router"
+version = "0.1.0"
+description = "harbor_flich_email_router using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[file-processing,litellm,spreadsheets,tools]>=1.15.41,<2.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/harbor_flich_email_router"]
+
+[tool.crewai]
+type = "flow"
+definition = "src/harbor_flich_email_router/flow.json"
+project_id = "cbda44a7-46b8-4fad-81ae-f864b9f81bd4"
+
+[tool.uv]
+constraint-dependencies = ["crewai==1.15.41"]

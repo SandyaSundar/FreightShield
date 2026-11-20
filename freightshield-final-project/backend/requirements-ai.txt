@@ -1,0 +1,2 @@
+crewai[file-processing,litellm,tools]>=1.15.41,<2.0.0
+exa-py

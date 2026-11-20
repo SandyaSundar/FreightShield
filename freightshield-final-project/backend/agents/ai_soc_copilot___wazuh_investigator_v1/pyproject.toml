@@ -1,0 +1,26 @@
+[project]
+name = "ai_soc_copilot___wazuh_investigator"
+version = "0.1.0"
+description = "ai_soc_copilot___wazuh_investigator using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[file-processing,litellm,tools]>=1.15.41,<2.0.0",
+    "exa-py",
+]
+
+[project.scripts]
+ai_soc_copilot___wazuh_investigator = "ai_soc_copilot___wazuh_investigator.main:run"
+run_crew = "ai_soc_copilot___wazuh_investigator.main:run"
+train = "ai_soc_copilot___wazuh_investigator.main:train"
+replay = "ai_soc_copilot___wazuh_investigator.main:replay"
+test = "ai_soc_copilot___wazuh_investigator.main:test"
+run_with_trigger = "ai_soc_copilot___wazuh_investigator.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+project_id = "65d8d9bd-1cf1-4b05-bfbf-be0af41415bb"
